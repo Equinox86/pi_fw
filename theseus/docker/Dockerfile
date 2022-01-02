@@ -1,15 +1,16 @@
 FROM ubuntu:18.04
 
 RUN \
-	## INSTALL DEPENDENCIES
+	## INSTALL BUILDROOT DEPENDENCIES
 	apt-get update && \
 	apt-get install -y \
 		sed make binutils gcc bc nano \
 		g++ bash patch gzip bzip2 \
 		perl tar cpio python unzip \
-		rsync wget libncurses-dev && \ 
+		rsync wget libncurses-dev  \
+	## QEMU DEPENDENCIES
+		qemu-system uml-utilities && \ 
 	## DOWNLOAD AND INSTALL BUILDROOT
-	#mkdir -p /home/equinox/thereus && \
 	useradd equinox && \
 	usermod -aG sudo equinox
 	#cd /home/equinox/buildroot && \
